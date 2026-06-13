@@ -59,6 +59,14 @@
               <catDesc>Verse whose lines are grouped in numbered book divisions (epic: Homer,
                 Virgil, Apollonius, Lucan, Statius). Citation: book → line.</catDesc>
             </category>
+            <category xml:id="verse-book-poem-line">
+              <catDesc>Verse with numbered poems grouped in numbered books; lines cited within
+                poems (Horace Odes, Ovid Amores, Tibullus). Citation: book → poem → line.</catDesc>
+            </category>
+            <category xml:id="verse-poem-line">
+              <catDesc>Verse with numbered poems cited directly, no book division (Catullus,
+                Martial). Citation: poem → line.</catDesc>
+            </category>
           </category>
 
           <category xml:id="prose">
@@ -101,6 +109,10 @@
             <category xml:id="prose-fragment">
               <catDesc>Prose cited by fragment number (EpiDoc div[@type='textpart'][@subtype='fragment']).
                 Citation: fragment.</catDesc>
+            </category>
+            <category xml:id="prose-commentary-section">
+              <catDesc>Prose cited commentary → section (scholia, commentarii on classical
+                authors). Citation: commentary → section.</catDesc>
             </category>
             <category xml:id="prose-section">
               <catDesc>Prose cited by a single section level (Platonic Stephanus sections,
