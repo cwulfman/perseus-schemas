@@ -82,6 +82,14 @@
               <catDesc>Prose cited chapter → section, with no book division (much
                 historiography and biography). Citation: chapter → section.</catDesc>
             </category>
+            <category xml:id="prose-book">
+              <catDesc>Prose cited by book number only, with no sub-division within books
+                (brief works, CSEL collections). Citation: book.</catDesc>
+            </category>
+            <category xml:id="prose-book-letter">
+              <catDesc>Prose cited book → letter (epistolary collections arranged in books,
+                e.g. Ambrose, Hieronymus). Citation: book.letter.</catDesc>
+            </category>
             <category xml:id="prose-book-section">
               <catDesc>Prose cited book → section, with no chapter division (Aristotle by
                 Bekker, some geography). Citation: book → section.</catDesc>
