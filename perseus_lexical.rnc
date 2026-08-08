@@ -9,7 +9,7 @@ namespace teix = "http://www.tei-c.org/ns/Examples"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2026-06-13T17:15:47Z. . 
+# Schema generated from ODD source 2026-08-08T16:46:22Z. . 
 # TEI Edition:  
 # TEI Edition Location: https://www.tei-c.org/Vault/P5// 
 #
@@ -1311,6 +1311,8 @@ model.respLike =
 model.divWrapper = notAllowed
 model.divTopPart = model.headLike
 model.divTop = model.divWrapper | model.divTopPart
+model.frontPart.drama = notAllowed
+model.pLike.front = head
 model.divBottomPart = notAllowed
 model.divBottom = model.divWrapper | model.divBottomPart
 model.choicePart = abbr | expan | seg
@@ -1371,6 +1373,7 @@ model.global =
   | model.global.edit
 model.biblPart =
   model.respLike | model.imprintPart | quote | bibl | availability
+model.frontPart = model.frontPart.drama
 model.pPart.data =
   model.dateLike
   | model.measureLike
@@ -3031,7 +3034,7 @@ TEI =
   
   ## (text) contains a single text of any kind, whether unitary or composite, for example a poem or drama, a collection of essays, a novel, a dictionary, or a corpus sample. [4. Default Text Structure 16.1. Varieties of Composite Text]
   element text {
-    (model.global*, (body), model.global*),
+    (model.global*, (front, model.global*)?, (body), model.global*),
     att.global.attributes,
     att.declaring.attributes,
     att.typed.attributes,
@@ -3111,6 +3114,23 @@ body =
     att.divLike.attributes,
     att.placement.attributes,
     att.typed.attributes,
+    empty
+  }
+front =
+  
+  ## (front matter) contains any prefatory matter (headers, abstracts, title page, prefaces, dedications, etc.) found at the start of a document, before the main body. [4.6. Title Pages 4. Default Text Structure]
+  element front {
+    ((model.frontPart
+      | model.pLike
+      | model.pLike.front
+      | model.global)*,
+     (((model.div1Like,
+        (model.div1Like | model.frontPart | model.global)*)
+       | (model.divLike,
+          (model.divLike | model.frontPart | model.global)*)),
+      (model.divBottom, (model.divBottom | model.global)*)?)?),
+    att.global.attributes,
+    att.declaring.attributes,
     empty
   }
 att.datable.custom.attributes =

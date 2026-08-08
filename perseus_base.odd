@@ -168,12 +168,14 @@
                    editorialDecl correction normalization quotation
                    profileDesc creation langUsage language textClass keywords catRef
                    licence change revisionDesc"/>
-        <moduleRef key="textstructure" include="TEI text body div"/>
+        <moduleRef key="textstructure"
+          include="TEI text body div front back opener closer salute signed dateline byline
+                   floatingText"/>
         <moduleRef key="namesdates" include="persName orgName placeName surname forename addName"/>
         <moduleRef key="verse"/>
         <!-- The drama module supplies cast-list elements. <stage> is NOT here: in TEI P5 it
              belongs to the core module (added to the core include list above). -->
-        <moduleRef key="drama" include="castList castItem role roleDesc"/>
+        <moduleRef key="drama" include="castList castGroup castItem role roleDesc set"/>
         <!-- figures module: <figure> and its caption <figDesc> (embedded <graphic> is a core
              element, listed in the core include above). Children must declare this module to
              use figures (see ODD-CHAINING-PROTOCOL.md). -->
