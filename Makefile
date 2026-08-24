@@ -2,7 +2,7 @@
 # Configuration
 # ============================================================
 TEI_XSL_DIR := $(HOME)/tei-xsl/xml/tei/stylesheet
-SAXON_JAR   := /opt/homebrew/Cellar/saxon/12.9/libexec/saxon-he-12.9.jar
+SAXON_JAR   := /opt/homebrew/Cellar/saxon/13.0/libexec/saxon-he-13.0.jar
 P5SUBSET    := $(HOME)/tei-xsl/p5subset.xml
 ODD2ODD_XSL := $(TEI_XSL_DIR)/odds/odd2odd.xsl
 ODD2RNG_XSL := $(TEI_XSL_DIR)/odds/odd2relax.xsl
@@ -21,26 +21,68 @@ ODDFLAGS    := defaultSource=$(P5SUBSET) currentDirectory=$(CURDIR)/
 # ============================================================
 .PHONY: all clean check
 
-all: tei_bare.compiled.odd perseus_base.rng perseus_base.rnc
+all: tei_minimal.compiled.odd perseus_base.rnc perseus_prose.rnc perseus_verse.rnc perseus_drama.rnc perseus_lexical.rnc
 
-# ------ tei_bare -----------------------------------------------
-# Pass 1: expand tei_bare.odd against p5subset.xml.
-# tei_bare.compiled.odd is a build intermediate only; no RNG is generated
-# because no documents validate against tei_bare directly.
+# ------ tei_bare (pedagogical reference, not part of the build chain) -------
 tei_bare.compiled.odd: tei_bare.odd $(P5SUBSET)
 	$(SAXON) -s:$< -xsl:$(ODD2ODD_XSL) -o:$@ $(ODDFLAGS)
 
+# ------ tei_minimal --------------------------------------------
+# Pass 1: expand tei_minimal.odd against p5subset.xml.
+# This is the recommended TEI starting point for project customizations.
+tei_minimal.compiled.odd: tei_minimal.odd $(P5SUBSET)
+	$(SAXON) -s:$< -xsl:$(ODD2ODD_XSL) -o:$@ $(ODDFLAGS)
+
 # ------ perseus_base -------------------------------------------
-# source="tei_bare.compiled.odd" in schemaSpec means odd2odd.xsl reads
-# the fully-expanded parent specs from the compiled ODD, then applies
-# the child's class deletions on top.
-perseus_base.compiled.odd: perseus_base.odd tei_bare.compiled.odd $(P5SUBSET)
+# source="tei_minimal.compiled.odd" in schemaSpec chains from the compiled
+# tei_minimal, inheriting its elements and applying perseus customizations.
+perseus_base.compiled.odd: perseus_base.odd $(P5SUBSET)
 	$(SAXON) -s:$< -xsl:$(ODD2ODD_XSL) -o:$@ $(ODDFLAGS)
 
 perseus_base.rng: perseus_base.compiled.odd
 	$(SAXON) -s:$< -xsl:$(ODD2RNG_XSL) -o:$@
 
 perseus_base.rnc: perseus_base.rng
+	$(TRANG) $< $@
+
+# ------ perseus_prose ------------------------------------------
+perseus_prose.compiled.odd: perseus_prose.odd perseus_base.compiled.odd $(P5SUBSET)
+	$(SAXON) -s:$< -xsl:$(ODD2ODD_XSL) -o:$@ $(ODDFLAGS)
+
+perseus_prose.rng: perseus_prose.compiled.odd
+	$(SAXON) -s:$< -xsl:$(ODD2RNG_XSL) -o:$@
+
+perseus_prose.rnc: perseus_prose.rng
+	$(TRANG) $< $@
+
+# ------ perseus_verse ------------------------------------------
+perseus_verse.compiled.odd: perseus_verse.odd perseus_base.compiled.odd $(P5SUBSET)
+	$(SAXON) -s:$< -xsl:$(ODD2ODD_XSL) -o:$@ $(ODDFLAGS)
+
+perseus_verse.rng: perseus_verse.compiled.odd
+	$(SAXON) -s:$< -xsl:$(ODD2RNG_XSL) -o:$@
+
+perseus_verse.rnc: perseus_verse.rng
+	$(TRANG) $< $@
+
+# ------ perseus_drama ------------------------------------------
+perseus_drama.compiled.odd: perseus_drama.odd perseus_base.compiled.odd $(P5SUBSET)
+	$(SAXON) -s:$< -xsl:$(ODD2ODD_XSL) -o:$@ $(ODDFLAGS)
+
+perseus_drama.rng: perseus_drama.compiled.odd
+	$(SAXON) -s:$< -xsl:$(ODD2RNG_XSL) -o:$@
+
+perseus_drama.rnc: perseus_drama.rng
+	$(TRANG) $< $@
+
+# ------ perseus_lexical ----------------------------------------
+perseus_lexical.compiled.odd: perseus_lexical.odd perseus_base.compiled.odd $(P5SUBSET)
+	$(SAXON) -s:$< -xsl:$(ODD2ODD_XSL) -o:$@ $(ODDFLAGS)
+
+perseus_lexical.rng: perseus_lexical.compiled.odd
+	$(SAXON) -s:$< -xsl:$(ODD2RNG_XSL) -o:$@
+
+perseus_lexical.rnc: perseus_lexical.rng
 	$(TRANG) $< $@
 
 # ------ future ODDs (uncomment as created) ---------------------

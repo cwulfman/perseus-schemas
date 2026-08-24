@@ -9,15 +9,13 @@ namespace teix = "http://www.tei-c.org/ns/Examples"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2026-08-24T20:20:12Z. . 
-# TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
-# TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
+# Schema generated from ODD source 2026-08-24T20:20:22Z. . 
+# TEI Edition:  
+# TEI Edition Location: https://www.tei-c.org/Vault/P5// 
 #
 
 #
-macro.abContent = (text | model.paraPart | ab)*
 macro.paraContent = (text | model.paraPart)*
-macro.limitedContent = (text | model.limitedPhrase | model.inter)*
 macro.phraseSeq =
   (text
    | model.gLike
@@ -216,7 +214,7 @@ att.datable.w3c.attribute.to =
   }?
 sch:pattern [
   id =
-    "perseus_core-att.datable.w3c-att-datable-w3c-when-constraint-rule-1"
+    "perseus_lexical-att.datable.w3c-att-datable-w3c-when-constraint-rule-1"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -236,7 +234,7 @@ sch:pattern [
 ]
 sch:pattern [
   id =
-    "perseus_core-att.datable.w3c-att-datable-w3c-from-constraint-rule-2"
+    "perseus_lexical-att.datable.w3c-att-datable-w3c-from-constraint-rule-2"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -256,7 +254,7 @@ sch:pattern [
 ]
 sch:pattern [
   id =
-    "perseus_core-att.datable.w3c-att-datable-w3c-to-constraint-rule-3"
+    "perseus_lexical-att.datable.w3c-att-datable-w3c-to-constraint-rule-3"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -487,7 +485,7 @@ att.global.source.attribute.source =
   }?
 sch:pattern [
   id =
-    "perseus_core-att.global.source-source-only_1_ODD_source-constraint-rule-4"
+    "perseus_lexical-att.global.source-source-only_1_ODD_source-constraint-rule-4"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -597,7 +595,7 @@ att.pointing.attribute.targetLang =
   }?
 sch:pattern [
   id =
-    "perseus_core-att.pointing-targetLang-targetLang-constraint-rule-5"
+    "perseus_lexical-att.pointing-targetLang-targetLang-constraint-rule-5"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -689,13 +687,6 @@ att.ranging.attribute.confidence =
   attribute confidence {
     xsd:double { minInclusive = "0" maxInclusive = "1" }
   }?
-att.resourced.attributes = att.resourced.attribute.url
-att.resourced.attribute.url =
-  
-  ## (uniform resource locator) specifies the URL from which the media concerned may be obtained.
-  attribute url {
-    xsd:anyURI { pattern = "\S+" }
-  }
 att.scope.attributes = att.scope.attribute.scope
 att.scope.attribute.scope =
   
@@ -729,7 +720,7 @@ att.spanning.attribute.spanTo =
   }?
 sch:pattern [
   id =
-    "perseus_core-att.spanning-spanTo-spanTo-points-to-following-constraint-rule-6"
+    "perseus_lexical-att.spanning-spanTo-spanTo-points-to-following-constraint-rule-6"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -767,7 +758,7 @@ att.typed.attribute.subtype =
     xsd:token { pattern = "[^\p{C}\p{Z}]+" }
   }?
 sch:pattern [
-  id = "perseus_core-att.typed-subtypeTyped-constraint-rule-7"
+  id = "perseus_lexical-att.typed-subtypeTyped-constraint-rule-7"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -977,36 +968,6 @@ att.global.attribute.xmlspace =
       ## indicates the intent that applications preserve all white space
       "preserve"
   }?
-att.media.attributes =
-  att.media.attribute.width,
-  att.media.attribute.height,
-  att.media.attribute.scale
-att.media.attribute.width =
-  
-  ## Where the media are displayed, indicates the display width.
-  attribute width {
-    xsd:token {
-      pattern =
-        "[\-+]?\d+(\.\d+)?(%|cm|mm|in|pt|pc|px|em|ex|ch|rem|vw|vh|vmin|vmax)"
-    }
-  }?
-att.media.attribute.height =
-  
-  ## Where the media are displayed, indicates the display height.
-  attribute height {
-    xsd:token {
-      pattern =
-        "[\-+]?\d+(\.\d+)?(%|cm|mm|in|pt|pc|px|em|ex|ch|rem|vw|vh|vmin|vmax)"
-    }
-  }?
-att.media.attribute.scale =
-  
-  ## Where the media are displayed, indicates a scale factor to be applied when generating the desired display size.
-  attribute scale {
-    xsd:double
-    | xsd:token { pattern = "(\-?[\d]+/\-?[\d]+)" }
-    | xsd:decimal
-  }?
 att.naming.attributes =
   att.canonical.attributes,
   att.naming.attribute.role,
@@ -1089,22 +1050,19 @@ model.segLike_sequence = s, w, seg
 model.segLike_sequenceOptional = s?, w?, seg?
 model.segLike_sequenceOptionalRepeatable = s*, w*, seg*
 model.segLike_sequenceRepeatable = s+, w+, seg+
-model.hiLike = hi | q
-model.hiLike_alternation = hi | q
-model.hiLike_sequence = hi, q
-model.hiLike_sequenceOptional = hi?, q?
-model.hiLike_sequenceOptionalRepeatable = hi*, q*
-model.hiLike_sequenceRepeatable = hi+, q+
-model.emphLike = foreign | emph | mentioned | gloss | term | title
-model.emphLike_alternation =
-  foreign | emph | mentioned | gloss | term | title
-model.emphLike_sequence = foreign, emph, mentioned, gloss, term, title
-model.emphLike_sequenceOptional =
-  foreign?, emph?, mentioned?, gloss?, term?, title?
+model.hiLike = hi
+model.hiLike_alternation = hi
+model.hiLike_sequence = hi
+model.hiLike_sequenceOptional = hi?
+model.hiLike_sequenceOptionalRepeatable = hi*
+model.hiLike_sequenceRepeatable = hi+
+model.emphLike = foreign | mentioned | gloss | title
+model.emphLike_alternation = foreign | mentioned | gloss | title
+model.emphLike_sequence = foreign, mentioned, gloss, title
+model.emphLike_sequenceOptional = foreign?, mentioned?, gloss?, title?
 model.emphLike_sequenceOptionalRepeatable =
-  foreign*, emph*, mentioned*, gloss*, term*, title*
-model.emphLike_sequenceRepeatable =
-  foreign+, emph+, mentioned+, gloss+, term+, title+
+  foreign*, mentioned*, gloss*, title*
+model.emphLike_sequenceRepeatable = foreign+, mentioned+, gloss+, title+
 model.highlighted = model.hiLike | model.emphLike
 model.highlighted_alternation =
   model.hiLike_alternation | model.emphLike_alternation
@@ -1135,12 +1093,12 @@ model.egLike_sequence = empty
 model.egLike_sequenceOptional = empty
 model.egLike_sequenceOptionalRepeatable = empty
 model.egLike_sequenceRepeatable = notAllowed
-model.graphicLike = graphic
-model.graphicLike_alternation = graphic
-model.graphicLike_sequence = graphic
-model.graphicLike_sequenceOptional = graphic?
-model.graphicLike_sequenceOptionalRepeatable = graphic*
-model.graphicLike_sequenceRepeatable = graphic+
+model.graphicLike = notAllowed
+model.graphicLike_alternation = notAllowed
+model.graphicLike_sequence = empty
+model.graphicLike_sequenceOptional = empty
+model.graphicLike_sequenceOptionalRepeatable = empty
+model.graphicLike_sequenceRepeatable = notAllowed
 model.offsetLike = notAllowed
 model.offsetLike_alternation = notAllowed
 model.offsetLike_sequence = empty
@@ -1160,13 +1118,12 @@ model.pPart.editorial_sequenceOptional = choice?, abbr?, expan?
 model.pPart.editorial_sequenceOptionalRepeatable =
   choice*, abbr*, expan*
 model.pPart.editorial_sequenceRepeatable = choice+, abbr+, expan+
-model.pPart.transcriptional = sic | corr | add | del
-model.pPart.transcriptional_alternation = sic | corr | add | del
-model.pPart.transcriptional_sequence = sic, corr, add, del
-model.pPart.transcriptional_sequenceOptional = sic?, corr?, add?, del?
-model.pPart.transcriptional_sequenceOptionalRepeatable =
-  sic*, corr*, add*, del*
-model.pPart.transcriptional_sequenceRepeatable = sic+, corr+, add+, del+
+model.pPart.transcriptional = add | del
+model.pPart.transcriptional_alternation = add | del
+model.pPart.transcriptional_sequence = add, del
+model.pPart.transcriptional_sequenceOptional = add?, del?
+model.pPart.transcriptional_sequenceOptionalRepeatable = add*, del*
+model.pPart.transcriptional_sequenceRepeatable = add+, del+
 model.pPart.edit = model.pPart.editorial | model.pPart.transcriptional
 model.pPart.edit_alternation =
   model.pPart.editorial_alternation
@@ -1200,13 +1157,12 @@ model.global.meta_sequence = empty
 model.global.meta_sequenceOptional = empty
 model.global.meta_sequenceOptionalRepeatable = empty
 model.global.meta_sequenceRepeatable = notAllowed
-model.milestoneLike = milestone | pb | lb | anchor
-model.milestoneLike_alternation = milestone | pb | lb | anchor
-model.milestoneLike_sequence = milestone, pb, lb, anchor
-model.milestoneLike_sequenceOptional = milestone?, pb?, lb?, anchor?
-model.milestoneLike_sequenceOptionalRepeatable =
-  milestone*, pb*, lb*, anchor*
-model.milestoneLike_sequenceRepeatable = milestone+, pb+, lb+, anchor+
+model.milestoneLike = milestone | pb | lb
+model.milestoneLike_alternation = milestone | pb | lb
+model.milestoneLike_sequence = milestone, pb, lb
+model.milestoneLike_sequenceOptional = milestone?, pb?, lb?
+model.milestoneLike_sequenceOptionalRepeatable = milestone*, pb*, lb*
+model.milestoneLike_sequenceRepeatable = milestone+, pb+, lb+
 model.gLike = notAllowed
 model.oddDecl = notAllowed
 model.oddDecl_alternation = notAllowed
@@ -1226,13 +1182,12 @@ model.specDescLike_sequence = empty
 model.specDescLike_sequenceOptional = empty
 model.specDescLike_sequenceOptionalRepeatable = empty
 model.specDescLike_sequenceRepeatable = notAllowed
-model.biblLike = bibl | biblStruct | listBibl
-model.biblLike_alternation = bibl | biblStruct | listBibl
-model.biblLike_sequence = bibl, biblStruct, listBibl
-model.biblLike_sequenceOptional = bibl?, biblStruct?, listBibl?
-model.biblLike_sequenceOptionalRepeatable =
-  bibl*, biblStruct*, listBibl*
-model.biblLike_sequenceRepeatable = bibl+, biblStruct+, listBibl+
+model.biblLike = bibl | biblStruct
+model.biblLike_alternation = bibl | biblStruct
+model.biblLike_sequence = bibl, biblStruct
+model.biblLike_sequenceOptional = bibl?, biblStruct?
+model.biblLike_sequenceOptionalRepeatable = bibl*, biblStruct*
+model.biblLike_sequenceRepeatable = bibl+, biblStruct+
 model.headLike = head
 model.headLike_alternation = head
 model.headLike_sequence = head
@@ -1263,18 +1218,18 @@ model.lLike_sequence = l
 model.lLike_sequenceOptional = l?
 model.lLike_sequenceOptionalRepeatable = l*
 model.lLike_sequenceRepeatable = l+
-model.pLike = p | ab
-model.pLike_alternation = p | ab
-model.pLike_sequence = p, ab
-model.pLike_sequenceOptional = p?, ab?
-model.pLike_sequenceOptionalRepeatable = p*, ab*
-model.pLike_sequenceRepeatable = p+, ab+
-model.stageLike = stage
-model.stageLike_alternation = stage
-model.stageLike_sequence = stage
-model.stageLike_sequenceOptional = stage?
-model.stageLike_sequenceOptionalRepeatable = stage*
-model.stageLike_sequenceRepeatable = stage+
+model.pLike = p
+model.pLike_alternation = p
+model.pLike_sequence = p
+model.pLike_sequenceOptional = p?
+model.pLike_sequenceOptionalRepeatable = p*
+model.pLike_sequenceRepeatable = p+
+model.stageLike = notAllowed
+model.stageLike_alternation = notAllowed
+model.stageLike_sequence = empty
+model.stageLike_sequenceOptional = empty
+model.stageLike_sequenceOptionalRepeatable = empty
+model.stageLike_sequenceRepeatable = notAllowed
 model.entryPart =
   superEntry
   | entryFree
@@ -1316,7 +1271,7 @@ model.global.edit_sequence = gap
 model.global.edit_sequenceOptional = gap?
 model.global.edit_sequenceOptionalRepeatable = gap*
 model.global.edit_sequenceRepeatable = gap+
-model.divPart = model.lLike | model.pLike | lg | sp
+model.divPart = model.lLike | model.pLike | sp
 model.placeNamePart = placeName
 model.placeNamePart_alternation = placeName
 model.placeNamePart_sequence = placeName
@@ -1344,29 +1299,26 @@ model.quoteLike_sequence = quote, cit
 model.quoteLike_sequenceOptional = quote?, cit?
 model.quoteLike_sequenceOptionalRepeatable = quote*, cit*
 model.quoteLike_sequenceRepeatable = quote+, cit+
-model.attributable = model.quoteLike | floatingText
-model.attributable_alternation =
-  model.quoteLike_alternation | floatingText
-model.attributable_sequence = model.quoteLike_sequence, floatingText
-model.attributable_sequenceOptional =
-  model.quoteLike_sequenceOptional?, floatingText?
+model.attributable = model.quoteLike
+model.attributable_alternation = model.quoteLike_alternation
+model.attributable_sequence = model.quoteLike_sequence
+model.attributable_sequenceOptional = model.quoteLike_sequenceOptional?
 model.attributable_sequenceOptionalRepeatable =
-  model.quoteLike_sequenceOptionalRepeatable*, floatingText*
+  model.quoteLike_sequenceOptionalRepeatable*
 model.attributable_sequenceRepeatable =
-  model.quoteLike_sequenceRepeatable+, floatingText+
+  model.quoteLike_sequenceRepeatable+
 model.respLike =
   author | editor | respStmt | sponsor | funder | principal
-model.divWrapper = byline | dateline | salute
-model.divTopPart = model.headLike | opener | signed
+model.divWrapper = notAllowed
+model.divTopPart = model.headLike
 model.divTop = model.divWrapper | model.divTopPart
-model.frontPart.drama = set | castList
-model.pLike.front = head | byline | dateline
-model.divBottomPart = closer | signed
+model.frontPart.drama = notAllowed
+model.pLike.front = head
+model.divBottomPart = notAllowed
 model.divBottom = model.divWrapper | model.divBottomPart
-model.choicePart = sic | corr | abbr | expan | seg
+model.choicePart = abbr | expan | seg
 model.imprintPart = publisher | biblScope | pubPlace
 model.catDescPart = notAllowed
-model.castItemPart = role | roleDesc
 model.addressLike = notAllowed
 model.addressLike_alternation = notAllowed
 model.addressLike_sequence = empty
@@ -1377,7 +1329,6 @@ model.nameLike =
   model.nameLike.agent
   | model.offsetLike
   | model.placeStateLike
-  | rs
   | idno
   | model.persNamePart
   | lang
@@ -1385,7 +1336,6 @@ model.nameLike_alternation =
   model.nameLike.agent_alternation
   | model.offsetLike_alternation
   | model.placeStateLike_alternation
-  | rs
   | idno
   | model.persNamePart_alternation
   | lang
@@ -1393,7 +1343,6 @@ model.nameLike_sequence =
   model.nameLike.agent_sequence,
   model.offsetLike_sequence,
   model.placeStateLike_sequence,
-  rs,
   idno,
   model.persNamePart_sequence,
   lang
@@ -1401,7 +1350,6 @@ model.nameLike_sequenceOptional =
   model.nameLike.agent_sequenceOptional?,
   model.offsetLike_sequenceOptional?,
   model.placeStateLike_sequenceOptional?,
-  rs?,
   idno?,
   model.persNamePart_sequenceOptional?,
   lang?
@@ -1409,7 +1357,6 @@ model.nameLike_sequenceOptionalRepeatable =
   model.nameLike.agent_sequenceOptionalRepeatable*,
   model.offsetLike_sequenceOptionalRepeatable*,
   model.placeStateLike_sequenceOptionalRepeatable*,
-  rs*,
   idno*,
   model.persNamePart_sequenceOptionalRepeatable*,
   lang*
@@ -1417,7 +1364,6 @@ model.nameLike_sequenceRepeatable =
   model.nameLike.agent_sequenceRepeatable+,
   model.offsetLike_sequenceRepeatable+,
   model.placeStateLike_sequenceRepeatable+,
-  rs+,
   idno+,
   model.persNamePart_sequenceRepeatable+,
   lang+
@@ -1426,16 +1372,9 @@ model.global =
   | model.milestoneLike
   | model.noteLike
   | model.global.edit
-  | figure
 model.biblPart =
-  model.respLike
-  | model.imprintPart
-  | quote
-  | series
-  | bibl
-  | extent
-  | availability
-model.frontPart = model.frontPart.drama | listBibl
+  model.respLike | model.imprintPart | quote | bibl | availability
+model.frontPart = model.frontPart.drama
 model.pPart.data =
   model.dateLike
   | model.measureLike
@@ -1474,8 +1413,10 @@ model.inter =
   | model.listLike
   | model.stageLike
   | model.attributable
-  | castList
-model.common = model.divPart | model.inter | q | model.entryLike
+  | superEntry
+  | entry
+  | entryFree
+model.common = model.divPart | model.inter | model.entryLike
 model.phrase =
   model.segLike
   | model.highlighted
@@ -1489,12 +1430,7 @@ model.phrase =
   | model.pPart.data
   | model.ptrLike.form
 model.paraPart =
-  model.gLike
-  | model.lLike
-  | model.global
-  | model.inter
-  | model.phrase
-  | lg
+  model.gLike | model.lLike | model.global | model.inter | model.phrase
 model.limitedPhrase =
   model.hiLike
   | model.emphLike
@@ -1508,10 +1444,9 @@ model.divGenLike = notAllowed
 model.div1Like = notAllowed
 model.teiHeaderPart = encodingDesc | profileDesc
 model.sourceDescPart = notAllowed
-model.encodingDescPart =
-  projectDesc | editorialDecl | refsDecl | classDecl | metDecl
+model.encodingDescPart = editorialDecl | refsDecl | classDecl | metDecl
 model.editorialDeclPart = correction | normalization | quotation
-model.profileDescPart = creation | langUsage | textClass
+model.profileDescPart = langUsage | textClass
 att.partials.attributes = att.partials.attribute.extent
 att.partials.attribute.extent =
   
@@ -1570,7 +1505,7 @@ att.calendarSystem.attribute.calendar =
   }?
 sch:pattern [
   id =
-    "perseus_core-att.calendarSystem-calendar-calendar_attr_on_empty_element-constraint-rule-8"
+    "perseus_lexical-att.calendarSystem-calendar-calendar_attr_on_empty_element-constraint-rule-8"
   "\x{a}" ~
   "      "
   sch:rule [
@@ -1655,7 +1590,7 @@ p =
     macro.paraContent
     >> sch:pattern [
          id =
-           "perseus_core-p-abstractModel-structure-p-in-ab-or-p-constraint-rule-9"
+           "perseus_lexical-p-abstractModel-structure-p-in-ab-or-p-constraint-rule-9"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -1677,7 +1612,7 @@ p =
        ]
     >> sch:pattern [
          id =
-           "perseus_core-p-abstractModel-structure-p-in-l-constraint-rule-10"
+           "perseus_lexical-p-abstractModel-structure-p-in-l-constraint-rule-10"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -1706,10 +1641,6 @@ foreign =
   
   ## (foreign) identifies a word or phrase as belonging to some language other than that of the surrounding text. [3.3.2.1. Foreign Words or Expressions]
   element foreign { macro.phraseSeq, att.global.attributes, empty }
-emph =
-  
-  ## (emphasized) marks words or phrases which are stressed or emphasized for linguistic or rhetorical effect. [3.3.2.2. Emphatic Words and Phrases 3.3.2. Emphasis, Foreign Words, and Unusual Language]
-  element emph { macro.paraContent, att.global.attributes, empty }
 hi =
   
   ## (highlighted) marks a word or phrase as graphically distinct from the surrounding text, for reasons concerning which no claim is made. [3.3.2.2. Emphatic Words and Phrases 3.3.2. Emphasis, Foreign Words, and Unusual Language]
@@ -1724,48 +1655,6 @@ quote =
     att.typed.attributes,
     empty
   }
-q =
-  
-  ## (quoted) contains material which is distinguished from the surrounding text using quotation marks or a similar method, for any one of a variety of reasons including, but not limited to: direct speech or thought, technical terms or jargon, authorial distance, quotations from elsewhere, and passages that are mentioned but not used. [3.3.3. Quotation]
-  element q {
-    macro.specialPara,
-    att.global.attributes,
-    att.ascribed.directed.attributes,
-    
-    ## (type) may be used to indicate whether the offset passage is spoken or thought, or to characterize it more finely.
-    ## Suggested values include: 1] spoken (spoken); 2] thought (thought); 3] written (written); 4] soCalled (so called); 5] foreign (foreign); 6] distinct (distinct); 7] term; 8] emph (emph); 9] mentioned (mentioned)
-    attribute type {
-      
-      ## (spoken) representation of speech
-      "spoken"
-      | 
-        ## (thought) representation of thought, e.g. internal monologue
-        "thought"
-      | 
-        ## (written) quotation from a written source
-        "written"
-      | 
-        ## (so called) authorial distance
-        "soCalled"
-      | 
-        ## (foreign) foreign words
-        "foreign"
-      | 
-        ## (distinct) linguistically distinct
-        "distinct"
-      | 
-        ## technical term
-        "term"
-      | 
-        ## (emph) rhetorically emphasized
-        "emph"
-      | 
-        ## (mentioned) refering to itself, not its normal referent
-        "mentioned"
-      | xsd:token { pattern = "[^\p{C}\p{Z}]+" }
-    }?,
-    empty
-  }
 cit =
   
   ## (cited quotation) contains a quotation from some other document, together with a bibliographic reference to its source. In a dictionary it may contain an example text with at least one occurrence of the word form, used in the sense being described, or a translation of the headword, or an example. [3.3.3. Quotation 4.3.1. Grouped Texts 10.3.5.1. Examples]
@@ -1776,8 +1665,7 @@ cit =
      | model.global
      | model.graphicLike
      | model.ptrLike
-     | model.attributable
-     | q)+,
+     | model.attributable)+,
     att.global.attributes,
     att.typed.attributes,
     empty
@@ -1795,34 +1683,6 @@ gloss =
     att.cReferencing.attributes,
     att.declaring.attributes,
     att.pointing.attributes,
-    att.typed.attributes,
-    empty
-  }
-term =
-  
-  ## (term) contains a single-word, multi-word, or symbolic designation which is regarded as a technical term. [3.4.1. Terms and Glosses]
-  element term {
-    macro.phraseSeq,
-    att.global.attributes,
-    att.cReferencing.attributes,
-    att.canonical.attributes,
-    att.declaring.attributes,
-    att.pointing.attributes,
-    att.sortable.attributes,
-    att.typed.attributes,
-    empty
-  }
-sic =
-  
-  ## (Latin for thus or so) contains text reproduced although apparently incorrect or inaccurate. [3.5.1. Apparent Errors]
-  element sic { macro.paraContent, att.global.attributes, empty }
-corr =
-  
-  ## (correction) contains the correct form of a passage apparently erroneous in the copy text. [3.5.1. Apparent Errors]
-  element corr {
-    macro.paraContent,
-    att.global.attributes,
-    att.editLike.attributes,
     att.typed.attributes,
     empty
   }
@@ -1916,16 +1776,6 @@ name =
     att.typed.attributes,
     empty
   }
-rs =
-  
-  ## (referencing string) contains a general purpose name or referring string. [14.2.1. Personal Names 3.6.1. Referring Strings]
-  element rs {
-    macro.phraseSeq,
-    att.global.attributes,
-    att.naming.attributes,
-    att.typed.attributes,
-    empty
-  }
 num =
   
   ## (number) contains a number, written in any form. [3.6.3. Numbers and
@@ -2006,7 +1856,7 @@ ref =
   element ref {
     macro.paraContent
     >> sch:pattern [
-         id = "perseus_core-ref-refAtts-constraint-rule-11"
+         id = "perseus_lexical-ref-refAtts-constraint-rule-11"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -2042,7 +1892,7 @@ ref =
      (model.divBottom, model.global*)*)
     >> sch:pattern [
          id =
-           "perseus_core-list-gloss-list-must-have-labels-constraint-rule-12"
+           "perseus_lexical-list-gloss-list-must-have-labels-constraint-rule-12"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -2114,7 +1964,6 @@ head =
   ## (heading) contains any type of heading, for example the title of a section, or the heading of a list, glossary, manuscript description, etc. [4.2.1. Headings and Trailers]
   element head {
     (text
-     | lg
      | model.gLike
      | model.phrase
      | model.inter
@@ -2134,18 +1983,6 @@ note =
     att.anchoring.attributes,
     att.placement.attributes,
     att.pointing.attributes,
-    att.typed.attributes,
-    empty
-  }
-graphic =
-  
-  ## (graphic) indicates the location of a graphic or illustration, either forming part of a text, or providing an image of it. [3.10. Graphics and Other Non-textual Components 12.1. Digital Facsimiles]
-  element graphic {
-    model.descLike*,
-    att.global.attributes,
-    att.declaring.attributes,
-    att.media.attributes,
-    att.resourced.attributes,
     att.typed.attributes,
     empty
   }
@@ -2203,24 +2040,7 @@ monogr =
      model.noteLike*,
      (idno | model.ptrLike | editor | sponsor | funder | respStmt)*,
      imprint,
-     (imprint | extent | biblScope)*),
-    att.global.attributes,
-    empty
-  }
-series =
-  
-  ## (series information) contains information about the series in which a book or other bibliographic item has appeared. [3.12.2.1. Analytic, Monographic, and Series Levels]
-  element series {
-    (text
-     | model.gLike
-     | title
-     | model.ptrLike
-     | editor
-     | respStmt
-     | biblScope
-     | idno
-     | model.global
-     | availability)*,
+     (imprint | biblScope)*),
     att.global.attributes,
     empty
   }
@@ -2355,24 +2175,11 @@ biblStruct =
   
   ## (structured bibliographic citation) contains a structured bibliographic citation, in which only bibliographic sub-elements appear and in a specified order. [3.12.1. Methods of Encoding Bibliographic References and Lists of References 2.2.7. The Source Description 16.3.2. Declarable Elements]
   element biblStruct {
-    ((monogr, series*)+, (model.noteLike | model.ptrLike)*),
+    (monogr+, (model.noteLike | model.ptrLike)*),
     att.global.attributes,
     att.canonical.attributes,
     att.declarable.attributes,
     att.docStatus.attributes,
-    att.sortable.attributes,
-    att.typed.attributes,
-    empty
-  }
-listBibl =
-  
-  ## (citation list) contains a list of bibliographic citations of any kind. [3.12.1. Methods of Encoding Bibliographic References and Lists of References 2.2.7. The Source Description 16.3.2. Declarable Elements]
-  element listBibl {
-    (model.headLike*,
-     (model.milestoneLike)*,
-     (model.biblLike+, (model.milestoneLike)*)+),
-    att.global.attributes,
-    att.declarable.attributes,
     att.sortable.attributes,
     att.typed.attributes,
     empty
@@ -2384,7 +2191,7 @@ l =
     ((text | model.gLike | model.phrase | model.inter | model.global)*)
     >> sch:pattern [
          id =
-           "perseus_core-l-abstractModel-structure-l-in-l-constraint-rule-13"
+           "perseus_lexical-l-abstractModel-structure-l-in-l-constraint-rule-13"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -2408,68 +2215,6 @@ l =
     att.metrical.attributes,
     empty
   }
-lg =
-  
-  ## (line group) contains one or more verse lines functioning as a formal unit, e.g. a stanza, refrain, verse paragraph, etc. [3.13.1. Core Tags for Verse 3.13. Passages of Verse or Drama 7.2.6. Speech Contents]
-  element lg {
-    ((model.divTop | model.global)*,
-     (model.lLike
-      | model.stageLike
-      | model.labelLike
-      | model.pPart.transcriptional
-      | lg),
-     (model.lLike
-      | model.stageLike
-      | model.labelLike
-      | model.pPart.transcriptional
-      | model.global
-      | lg)*,
-     (model.divBottom, model.global*)*)
-    >> sch:pattern [
-         id = "perseus_core-lg-atleast1oflggapl-constraint-rule-14"
-         "\x{a}" ~
-         "            "
-         sch:rule [
-           context = "tei:lg"
-           "\x{a}" ~
-           "               "
-           sch:assert [
-             test =
-               "count(descendant::tei:lg|descendant::tei:l|descendant::tei:gap) > 0"
-             "An lg element must contain at least one child l, lg, or gap element."
-           ]
-           "\x{a}" ~
-           "            "
-         ]
-         "\x{a}" ~
-         "         "
-       ]
-    >> sch:pattern [
-         id =
-           "perseus_core-lg-abstractModel-structure-lg-in-l-constraint-rule-15"
-         "\x{a}" ~
-         "            "
-         sch:rule [
-           context = "tei:lg"
-           "\x{a}" ~
-           "               "
-           sch:report [
-             test =
-               "ancestor::tei:l[not(.//tei:note//tei:lg[. = current()])]"
-             "Abstract model violation: Lines may not contain line groups."
-           ]
-           "\x{a}" ~
-           "            "
-         ]
-         "\x{a}" ~
-         "         "
-       ],
-    att.global.attributes,
-    att.declaring.attributes,
-    att.divLike.attributes,
-    att.typed.attributes,
-    empty
-  }
 sp =
   
   ## (speech) contains an individual speech in a performance text, or a passage presented as such in a prose or verse text. [3.13.2. Core Tags for Drama 3.13. Passages of Verse or Drama 7.2.2. Speeches and Speakers]
@@ -2480,9 +2225,7 @@ sp =
      | model.pLike
      | model.listLike
      | model.attributable
-     | speaker
-     | lg
-     | q)*,
+     | speaker)*,
     att.global.attributes,
     att.ascribed.directed.attributes,
     att.placement.attributes,
@@ -2495,51 +2238,6 @@ speaker =
     macro.phraseSeq,
     att.global.attributes,
     att.placement.attributes,
-    empty
-  }
-stage =
-  
-  ## (stage direction) contains any kind of stage direction within a dramatic text or fragment. [3.13.2. Core Tags for Drama 3.13. Passages of Verse or Drama 7.2.5. Stage Directions]
-  element stage {
-    macro.specialPara,
-    att.global.attributes,
-    att.ascribed.directed.attributes,
-    att.placement.attributes,
-    
-    ## indicates the kind of stage direction.
-    ## Suggested values include: 1] setting; 2] entrance; 3] exit; 4] business; 5] novelistic; 6] delivery; 7] modifier; 8] location; 9] mixed
-    attribute type {
-      list {
-        (
-         ## describes a setting.
-         "setting"
-         | 
-           ## describes an entrance.
-           "entrance"
-         | 
-           ## describes an exit.
-           "exit"
-         | 
-           ## describes stage business.
-           "business"
-         | 
-           ## is a narrative, motivating stage direction.
-           "novelistic"
-         | 
-           ## describes how a character speaks.
-           "delivery"
-         | 
-           ## gives some detail about a character.
-           "modifier"
-         | 
-           ## describes a location.
-           "location"
-         | 
-           ## more than one of the above
-           "mixed"
-         | xsd:token { pattern = "[^\p{C}\p{Z}]+" })+
-      }
-    }?,
     empty
   }
 att.lexicographic.normalized.attributes =
@@ -2632,7 +2330,7 @@ s =
   element s {
     macro.phraseSeq
     >> sch:pattern [
-         id = "perseus_core-s-noNestedS-constraint-rule-16"
+         id = "perseus_lexical-s-noNestedS-constraint-rule-14"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -2739,45 +2437,6 @@ att.global.linking.attribute.select =
       xsd:anyURI { pattern = "\S+" }+
     }
   }?
-ab =
-  
-  ## (anonymous block) contains any component-level unit of text, acting as a container for phrase or inter level elements analogous to, but without the same constraints as, a paragraph. [17.3. Blocks, Segments, and Anchors]
-  element ab {
-    macro.abContent
-    >> sch:pattern [
-         id =
-           "perseus_core-ab-abstractModel-structure-ab-in-l-constraint-rule-17"
-         "\x{a}" ~
-         "            "
-         sch:rule [
-           context = "tei:l//tei:ab"
-           "\x{a}" ~
-           "               "
-           sch:assert [
-             test =
-               "ancestor::tei:floatingText | parent::tei:figure | parent::tei:note"
-             "\x{a}" ~
-             "          Abstract model violation: Metrical lines may not contain higher-level divisions such as p or ab, unless ab is a child of figure or note, or is a descendant of floatingText.\x{a}" ~
-             "        "
-           ]
-           "\x{a}" ~
-           "            "
-         ]
-         "\x{a}" ~
-         "         "
-       ],
-    att.global.attributes,
-    att.declaring.attributes,
-    att.fragmentable.attributes,
-    att.typed.attributes,
-    empty
-  }
-anchor =
-  
-  ## (anchor point) attaches an identifier to a point within a text, whether or not it corresponds with a textual element. [8.4.2. Synchronization and Overlap 17.5. Correspondence and Alignment]
-  element anchor {
-    empty, att.global.attributes, att.typed.attributes, empty
-  }
 seg =
   
   ## (arbitrary segment) represents any segmentation of text below the chunk level. [17.3. Blocks, Segments, and Anchors 6.2. Components of the Verse Line 7.2.6. Speech Contents]
@@ -2827,8 +2486,7 @@ fileDesc =
   
   ## (file description) contains a full bibliographic description of an electronic file. [2.2. The File Description 2.1.1. The TEI Header and Its Components]
   element fileDesc {
-    ((titleStmt, editionStmt?, extent?, publicationStmt, notesStmt?),
-     sourceDesc+),
+    ((titleStmt, publicationStmt), sourceDesc+),
     att.global.attributes,
     empty
   }
@@ -2868,16 +2526,6 @@ principal =
     att.datable.attributes,
     empty
   }
-editionStmt =
-  
-  ## (edition statement) groups information relating to one edition of a text. [2.2.2. The Edition Statement 2.2. The File Description]
-  element editionStmt {
-    (model.pLike+ | model.respLike*), att.global.attributes, empty
-  }
-extent =
-  
-  ## (extent) describes the approximate size of a text stored on some carrier medium or of some other object, digital or non-digital, specified in any convenient units. [2.2.3. Type and Extent of File 2.2. The File Description 3.12.2.4. Imprint, Size of a Document, and Reprint Information 11.7.1. Object Description]
-  element extent { macro.phraseSeq, att.global.attributes, empty }
 publicationStmt =
   
   ## (publication statement) groups information concerning the publication or distribution of an electronic or other text. [2.2.4. Publication, Distribution, Licensing, etc. 2.2. The File Description]
@@ -2984,10 +2632,6 @@ licence =
     att.pointing.attributes,
     empty
   }
-notesStmt =
-  
-  ## (notes statement) collects together any notes providing information about a text additional to that recorded in other parts of the bibliographic description. [2.2.6. The Notes Statement 2.2. The File Description]
-  element notesStmt { (model.noteLike)+, att.global.attributes, empty }
 sourceDesc =
   
   ## (source description) describes the source(s) from which an electronic text was derived or generated, typically a bibliographic description in the case of a digitized text, or a phrase such as born digital for a text which has no previous existence. [2.2.7. The Source Description]
@@ -3004,15 +2648,6 @@ encodingDesc =
   element encodingDesc {
     (model.encodingDescPart | model.pLike)+,
     att.global.attributes,
-    empty
-  }
-projectDesc =
-  
-  ## (project description) describes in detail the aim or purpose for which an electronic file was encoded, together with any other relevant information concerning the process by which it was assembled or collected. [2.3.1. The Project Description 2.3. The Encoding Description 16.3.2. Declarable Elements]
-  element projectDesc {
-    model.pLike+,
-    att.global.attributes,
-    att.declarable.attributes,
     empty
   }
 editorialDecl =
@@ -3087,7 +2722,7 @@ quotation =
     (model.pLike*)
     >> sch:pattern [
          id =
-           "perseus_core-quotation-quotationContents-constraint-rule-18"
+           "perseus_lexical-quotation-quotationContents-constraint-rule-15"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -3164,7 +2799,7 @@ citeStructure =
     attribute match { text }
     >> sch:pattern [
          id =
-           "perseus_core-citeStructure-match-citestructure-outer-match-constraint-rule-19"
+           "perseus_lexical-citeStructure-match-citestructure-outer-match-constraint-rule-16"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -3185,7 +2820,7 @@ citeStructure =
        ]
     >> sch:pattern [
          id =
-           "perseus_core-citeStructure-match-citestructure-inner-match-constraint-rule-20"
+           "perseus_lexical-citeStructure-match-citestructure-inner-match-constraint-rule-17"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -3287,15 +2922,6 @@ profileDesc =
   element profileDesc {
     model.profileDescPart*, att.global.attributes, empty
   }
-creation =
-  
-  ## (creation) contains information about the creation of a text. [2.4.1. Creation 2.4. The Profile Description]
-  element creation {
-    (text | model.limitedPhrase)*,
-    att.global.attributes,
-    att.datable.attributes,
-    empty
-  }
 langUsage =
   
   ## (language usage) describes the languages, sublanguages, registers, dialects, etc. represented within a text. [2.4.2. Language Usage 2.4. The Profile Description 16.3.2. Declarable Elements]
@@ -3336,28 +2962,7 @@ textClass =
   
   ## (text classification) groups information which describes the nature or topic of a text in terms of a standard classification scheme, thesaurus, etc. [2.4.3. The Text Classification]
   element textClass {
-    (catRef | keywords)*,
-    att.global.attributes,
-    att.declarable.attributes,
-    empty
-  }
-keywords =
-  
-  ## (keywords) contains a list of keywords or phrases identifying the topic or nature of a text. [2.4.3. The Text Classification]
-  element keywords {
-    (term+ | \list),
-    att.global.attributes,
-    [
-      a:documentation [
-        "identifies the controlled vocabulary within which the set of keywords concerned is defined, for example by a "
-        ns1:code [ "<taxonomy>" ]
-        " element, or by some other resource."
-      ]
-    ]
-    attribute scheme {
-      xsd:anyURI { pattern = "\S+" }
-    }?,
-    empty
+    (catRef)*, att.global.attributes, att.declarable.attributes, empty
   }
 catRef =
   
@@ -3434,11 +3039,7 @@ TEI =
   
   ## (text) contains a single text of any kind, whether unitary or composite, for example a poem or drama, a collection of essays, a novel, a dictionary, or a corpus sample. [4. Default Text Structure 16.1. Varieties of Composite Text]
   element text {
-    (model.global*,
-     (front, model.global*)?,
-     (body),
-     model.global*,
-     (back, model.global*)?),
+    (model.global*, (front, model.global*)?, (body), model.global*),
     att.global.attributes,
     att.declaring.attributes,
     att.typed.attributes,
@@ -3461,20 +3062,6 @@ body =
     att.declaring.attributes,
     empty
   }
-floatingText =
-  
-  ## (floating text) contains a single text of any kind, whether unitary or composite, which interrupts the text containing it at any point and after which the surrounding text resumes. [4.3.2. Floating Texts]
-  element floatingText {
-    (model.global*,
-     (front, model.global*)?,
-     (body),
-     model.global*,
-     (back, model.global*)?),
-    att.global.attributes,
-    att.declaring.attributes,
-    att.typed.attributes,
-    empty
-  }
 \div =
   
   ## (text division) contains a subdivision of the front, body, or back of a text. [4.1. Divisions of the Body]
@@ -3486,7 +3073,7 @@ floatingText =
       (model.divBottom, model.global*)*)?)
     >> sch:pattern [
          id =
-           "perseus_core-div-abstractModel-structure-div-in-l-constraint-rule-21"
+           "perseus_lexical-div-abstractModel-structure-div-in-l-constraint-rule-18"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -3507,7 +3094,7 @@ floatingText =
        ]
     >> sch:pattern [
          id =
-           "perseus_core-div-abstractModel-structure-div-in-ab-or-p-constraint-rule-22"
+           "perseus_lexical-div-abstractModel-structure-div-in-ab-or-p-constraint-rule-19"
          "\x{a}" ~
          "            "
          sch:rule [
@@ -3534,60 +3121,6 @@ floatingText =
     att.typed.attributes,
     empty
   }
-byline =
-  
-  ## (byline) contains the primary statement of responsibility given for a work on its title page or at the head or end of the work. [4.2.2. Openers and Closers 4.5. Front Matter]
-  element byline {
-    (text | model.gLike | model.phrase | model.global)*,
-    att.global.attributes,
-    empty
-  }
-dateline =
-  
-  ## (dateline) contains a brief description of the place, date, time, etc. of production of a letter, newspaper story, or other work, prefixed or suffixed to it as a kind of heading or trailer. [4.2.2. Openers and Closers]
-  element dateline {
-    (text | model.gLike | model.phrase | model.global)*,
-    att.global.attributes,
-    empty
-  }
-opener =
-  
-  ## (opener) groups together dateline, byline, salutation, and similar phrases appearing as a preliminary group at the start of a division, especially of a letter. [4.2. Elements Common to All Divisions]
-  element opener {
-    (text
-     | model.gLike
-     | model.phrase
-     | byline
-     | dateline
-     | salute
-     | signed
-     | model.global)*,
-    att.global.attributes,
-    empty
-  }
-closer =
-  
-  ## (closer) groups together salutations, datelines, bylines, and similar phrases appearing as a final group at the end of a division, especially of a letter. [4.2.2. Openers and Closers 4.2. Elements Common to All Divisions]
-  element closer {
-    (text
-     | model.gLike
-     | byline
-     | signed
-     | dateline
-     | salute
-     | model.phrase
-     | model.global)*,
-    att.global.attributes,
-    empty
-  }
-salute =
-  
-  ## (salutation) contains a salutation or greeting prefixed to a foreword, dedicatory epistle, or other division of a text, or the salutation in the closing of a letter, preface, etc. [4.2.2. Openers and Closers]
-  element salute { macro.paraContent, att.global.attributes, empty }
-signed =
-  
-  ## (signature) contains the closing salutation, etc., appended to a foreword, dedicatory epistle, or other division of a text. [4.2.2. Openers and Closers]
-  element signed { macro.paraContent, att.global.attributes, empty }
 front =
   
   ## (front matter) contains any prefatory matter (headers, abstracts, title page, prefaces, dedications, etc.) found at the start of a document, before the main body. [4.6. Title Pages 4. Default Text Structure]
@@ -3601,24 +3134,6 @@ front =
        | (model.divLike,
           (model.divLike | model.frontPart | model.global)*)),
       (model.divBottom, (model.divBottom | model.global)*)?)?),
-    att.global.attributes,
-    att.declaring.attributes,
-    empty
-  }
-back =
-  
-  ## (back matter) contains any appendixes, etc. following the main part of a text. [4.7. Back Matter 4. Default Text Structure]
-  element back {
-    ((model.frontPart
-      | model.pLike.front
-      | model.pLike
-      | model.listLike
-      | model.global)*,
-     ((model.div1Like,
-       (model.frontPart | model.div1Like | model.global)*)
-      | (model.divLike,
-         (model.frontPart | model.divLike | model.global)*))?,
-     (model.divBottomPart, (model.divBottomPart | model.global)*)?),
     att.global.attributes,
     att.declaring.attributes,
     empty
@@ -3688,13 +3203,12 @@ att.datable.custom.attribute.datingMethod =
   attribute datingMethod {
     xsd:anyURI { pattern = "\S+" }
   }?
-model.persNamePart = surname | forename | addName
-model.persNamePart_alternation = surname | forename | addName
-model.persNamePart_sequence = surname, forename, addName
-model.persNamePart_sequenceOptional = surname?, forename?, addName?
-model.persNamePart_sequenceOptionalRepeatable =
-  surname*, forename*, addName*
-model.persNamePart_sequenceRepeatable = surname+, forename+, addName+
+model.persNamePart = notAllowed
+model.persNamePart_alternation = notAllowed
+model.persNamePart_sequence = empty
+model.persNamePart_sequenceOptional = empty
+model.persNamePart_sequenceOptionalRepeatable = empty
+model.persNamePart_sequenceRepeatable = notAllowed
 att.datable.iso.attributes =
   att.datable.iso.attribute.when-iso,
   att.datable.iso.attribute.notBefore-iso,
@@ -3791,36 +3305,6 @@ persName =
     att.global.attributes,
     att.datable.attributes,
     att.editLike.attributes,
-    att.personal.attributes,
-    att.typed.attributes,
-    empty
-  }
-surname =
-  
-  ## (surname) contains a family (inherited) name, as opposed to a given, baptismal, or nick name. [14.2.1. Personal Names]
-  element surname {
-    macro.phraseSeq,
-    att.global.attributes,
-    att.personal.attributes,
-    att.typed.attributes,
-    empty
-  }
-forename =
-  
-  ## (forename) contains a forename, given or baptismal name. [14.2.1. Personal Names]
-  element forename {
-    macro.phraseSeq,
-    att.global.attributes,
-    att.personal.attributes,
-    att.typed.attributes,
-    empty
-  }
-addName =
-  
-  ## (additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal name. [14.2.1. Personal Names]
-  element addName {
-    macro.phraseSeq,
-    att.global.attributes,
     att.personal.attributes,
     att.typed.attributes,
     empty
@@ -4199,104 +3683,6 @@ rhyme =
     }?,
     empty
   }
-set =
-  
-  ## (setting) contains a description of the setting, time, locale, appearance, etc., of the action of a play, typically found in the front matter of a printed performance text (not a stage direction). [7.1. Front and Back Matter
-  ##  ]
-  element set {
-    ((model.headLike | model.global)*, (model.common, model.global*)*),
-    att.global.attributes,
-    empty
-  }
-castList =
-  
-  ## (cast list) contains a single cast list or dramatis personae. [7.1.4. Cast Lists 7.1. Front and Back Matter
-  ##  ]
-  element castList {
-    ((model.divTop | model.global)*,
-     (model.common, model.global*)*,
-     ((castItem | castGroup), model.global*)+,
-     (model.common, model.global*)*),
-    att.global.attributes,
-    empty
-  }
-castGroup =
-  [
-    a:documentation [
-      "(cast list grouping) groups one or more individual "
-      ns1:code [ "<castItem>" ]
-      " elements within a cast list. [7.1.4. Cast Lists]"
-    ]
-  ]
-  element castGroup {
-    ((model.global | model.headLike)*,
-     ((castItem | castGroup | roleDesc), model.global*)+,
-     model.global*),
-    att.global.attributes,
-    empty
-  }
-castItem =
-  
-  ## (cast list item) contains a single entry within a cast list, describing either a single role or a list of non-speaking roles. [7.1.4. Cast Lists]
-  element castItem {
-    (text
-     | model.gLike
-     | model.castItemPart
-     | model.phrase
-     | model.global)*,
-    att.global.attributes,
-    att.typed.attribute.subtype,
-    
-    ## characterizes the cast item.
-    [ a:defaultValue = "role" ]
-    attribute type {
-      
-      ## the item describes a single role.
-      "role"
-      | 
-        ## the item describes a list of non-speaking roles.
-        "list"
-    }?,
-    empty
-  }
-role =
-  
-  ## (role) contains the name of a dramatic role, as given in a cast list. [7.1.4. Cast Lists]
-  element role {
-    macro.phraseSeq,
-    att.global.attributes,
-    
-    ## specifies the gender of the role.
-    attribute gender {
-      list {
-        xsd:token { pattern = "[^\p{C}\p{Z}]+" }+
-      }
-    }?,
-    empty
-  }
-roleDesc =
-  
-  ## (role description) describes a character's role in a drama. [7.1.4. Cast Lists]
-  element roleDesc { macro.phraseSeq, att.global.attributes, empty }
-figure =
-  
-  ## (figure) groups elements representing or containing graphic information such as an illustration, formula, or figure. [15.4. Specific Elements for Graphic Images]
-  element figure {
-    (model.headLike
-     | model.common
-     | figDesc
-     | model.graphicLike
-     | model.global
-     | model.divBottom)*,
-    att.global.attributes,
-    att.placement.attributes,
-    att.typed.attributes,
-    empty
-  }
-figDesc =
-  
-  ## (description of figure) contains a brief prose description of the appearance or content of a graphic figure, for use when documenting an image without displaying it. [15.4. Specific Elements for Graphic Images]
-  element figDesc { macro.limitedContent, att.global.attributes, empty }
 model.entryLike = superEntry | entry | entryFree
 att.entryLike.attributes =
   att.entryLike.attribute.type, att.typed.attribute.subtype

@@ -25,7 +25,7 @@
             October 2006</date> by the form at
         http://www.tei-c.org.uk/Roma/.</p>
       </sourceDesc>
-    </fileDesc><encodingDesc><appInfo><application ident="RomaJS" version="1.3.2" when="2026-04-02T15:56:35.538Z"><desc>File edited with <ref target="https://github.com/TEIC/romajs">RomaJS</ref></desc></application></appInfo></encodingDesc>
+    </fileDesc><encodingDesc><appInfo><application ident="RomaJS" version="1.3.2" when="2026-06-04T21:24:37.412Z"><desc>File edited with <ref target="https://github.com/TEIC/romajs">RomaJS</ref></desc></application></appInfo></encodingDesc>
     <revisionDesc>
       <change when="2011-03-26" who="#SR">rewrite as new-style ODD </change>
       <change when="2007-08-12" who="#LB">Removed further elements added

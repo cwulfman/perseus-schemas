@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Perseus Lexical</title>
+        <respStmt>
+          <name xml:id="cew">Clifford Wulfman</name>
+          <resp>author</resp>
+        </respStmt>
+      </titleStmt>
+      <publicationStmt>
+        <distributor>Perseus Digital Library</distributor>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Chained from perseus_base.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <head>Perseus Lexical Customization</head>
+      <p>This ODD defines the schema for Perseus reference works, primarily classical lexica
+        such as LSJ and Lewis &amp; Short. It chains from
+        <ref target="perseus_base.odd">perseus_base</ref> and adds the TEI
+        <name>dictionaries</name> module.</p>
+
+      <schemaSpec ident="perseus_lexical" source="perseus_base.compiled.odd" start="TEI" docLang="en">
+
+        <moduleRef key="tei"/>
+        <moduleRef key="core"
+          include="p head note hi foreign cit gloss gap lb pb
+                   title author editor pubPlace publisher date
+                   bibl biblStruct biblScope respStmt resp monogr imprint
+                   ref quote name milestone list item label
+                   add del choice abbr expan mentioned num measure
+                   l sp speaker"/>
+        <moduleRef key="analysis" include="s w"/>
+        <moduleRef key="linking" include="seg"/>
+        <moduleRef key="header"
+          include="teiHeader fileDesc titleStmt publicationStmt sourceDesc
+                   principal sponsor funder authority availability idno
+                   encodingDesc classDecl taxonomy category catDesc
+                   refsDecl cRefPattern refState citeStructure
+                   editorialDecl correction normalization quotation
+                   profileDesc langUsage language textClass catRef
+                   licence change revisionDesc"/>
+        <moduleRef key="textstructure" include="TEI text front body div"/>
+        <moduleRef key="namesdates" include="persName orgName placeName"/>
+        <moduleRef key="verse"/>
+        <moduleRef key="dictionaries"/>
+
+        <!-- Allow dictionary entry elements to appear as block content inside div -->
+        <elementSpec ident="entry" module="dictionaries" mode="change">
+          <classes mode="change">
+            <memberOf key="model.inter"/>
+          </classes>
+        </elementSpec>
+        <elementSpec ident="entryFree" module="dictionaries" mode="change">
+          <classes mode="change">
+            <memberOf key="model.inter"/>
+          </classes>
+        </elementSpec>
+        <elementSpec ident="superEntry" module="dictionaries" mode="change">
+          <classes mode="change">
+            <memberOf key="model.inter"/>
+          </classes>
+        </elementSpec>
+
+      </schemaSpec>
+
+    </body>
+  </text>
+</TEI>

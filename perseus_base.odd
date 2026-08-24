@@ -1,92 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+<TEI xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Perseus Base ODD</title>
-        <author>Perseus Digital Library</author>
+        <title>Perseus Core</title>
+        <respStmt>
+          <name xml:id="cew">Clifford Wulfman</name>
+          <resp>author</resp>
+        </respStmt>
       </titleStmt>
       <publicationStmt>
-        <publisher>Perseus Digital Library</publisher>
-        <availability status="free">
-          <p>This ODD is freely available under the same terms as the TEI
-            Guidelines themselves. You are encouraged to copy, modify, and
-            redistribute it with appropriate attribution.</p>
-        </availability>
+        <distributor>Perseus Digital Library</distributor>
       </publicationStmt>
       <sourceDesc>
-        <p>Derived by ODD chaining from <ref target="tei_bare.odd">tei_bare.odd</ref>.
-          Defines the Perseus-wide "clean room" baseline from which all
-          domain-specific Perseus customizations inherit.</p>
+        <p>Developed ex nihilo.</p>
       </sourceDesc>
-    </fileDesc><encodingDesc><appInfo><application ident="RomaJS" version="1.3.2" when="2026-05-12T21:16:24.280Z"><desc>File edited with <ref target="https://github.com/TEIC/romajs">RomaJS</ref></desc></application></appInfo></encodingDesc>
-    <revisionDesc>
-      <change when="2026-04-02">Initial version: chain from tei_bare, harden
-        by deleting att.editLike. Note: att.personal cannot be deleted here
-        as its module (namesdates) is not loaded; that deletion belongs in
-        each derivative ODD that includes namesdates.</change>
-    </revisionDesc>
+    </fileDesc>
+    <encodingDesc>
+      <classDecl>
+        <taxonomy xml:id="perseus-genre">
+          <bibl>Perseus Digital Library structural-citation taxonomy. Documents reference it
+            via <gi>textClass</gi>/<gi>catRef</gi> in <gi>profileDesc</gi>, e.g.:
+            <code>&lt;catRef scheme="#perseus-genre" target="#verse-book-line"/&gt;</code>
+            The top-level category (drama / verse / prose) is the family; it selects the
+            schema (perseus_drama / perseus_verse / perseus_prose). Each child is a structural
+            subclass; it selects the CTS citeStructure. A bare family target
+            (<code>target="#verse"</code>) means the family default citeStructure was applied
+            and the document still needs review — such a catRef is also marked
+            <att>cert</att>="low" <att>resp</att>="#corpus-tools". This taxonomy classifies by
+            citation structure, not by literary genre.
+          </bibl>
+
+          <category xml:id="drama">
+            <catDesc>Dramatic texts. Schema: perseus_drama. Default citeStructure: line
+              (subclass drama-line).</catDesc>
+            <category xml:id="drama-line">
+              <catDesc>Drama cited by line (<gi>l</gi>/@n), with speeches and structural divs
+                as transparent wrappers. Default for the drama family. (Classical tragedy and
+                comedy: Aeschylus, Sophocles, Euripides, Aristophanes, Menander, Plautus,
+                Terence, Seneca.) Citation: line.</catDesc>
+            </category>
+            <category xml:id="drama-act-scene-line">
+              <catDesc>Drama cited act → scene → line (early modern: Shakespeare, Marlowe).
+                Citation: act → scene → line.</catDesc>
+            </category>
+          </category>
+
+          <category xml:id="verse">
+            <catDesc>Verse texts. Schema: perseus_verse. Default citeStructure: stichic line
+              (subclass verse-stichic).</catDesc>
+            <category xml:id="verse-stichic">
+              <catDesc>Stichic verse with no numbered book divisions; lines cited directly.
+                Default for the verse family. (Lyric, didactic, iambic, elegiac, epigram and
+                other non-epic verse.) Citation: line.</catDesc>
+            </category>
+            <category xml:id="verse-book-line">
+              <catDesc>Verse whose lines are grouped in numbered book divisions (epic: Homer,
+                Virgil, Apollonius, Lucan, Statius). Citation: book → line.</catDesc>
+            </category>
+            <category xml:id="verse-book-poem-line">
+              <catDesc>Verse with numbered poems grouped in numbered books; lines cited within
+                poems (Horace Odes, Ovid Amores, Tibullus). Citation: book → poem → line.</catDesc>
+            </category>
+            <category xml:id="verse-poem-line">
+              <catDesc>Verse with numbered poems cited directly, no book division (Catullus,
+                Martial). Citation: poem → line.</catDesc>
+            </category>
+          </category>
+
+          <category xml:id="prose">
+            <catDesc>Prose texts. Schema: perseus_prose. Default citeStructure:
+              book → chapter → section (subclass prose-standard). Prose subclasses differ
+              only in citation depth; the document's actual div structure selects which one
+              applies.</catDesc>
+            <category xml:id="prose-standard">
+              <catDesc>Prose cited book → chapter → section (Thucydides, Herodotus, Livy).
+                Default for the prose family. Citation: book → chapter → section.</catDesc>
+            </category>
+            <category xml:id="prose-chapter-section">
+              <catDesc>Prose cited chapter → section, with no book division (much
+                historiography and biography). Citation: chapter → section.</catDesc>
+            </category>
+            <category xml:id="prose-book">
+              <catDesc>Prose cited by book number only, with no sub-division within books
+                (brief works, CSEL collections). Citation: book.</catDesc>
+            </category>
+            <category xml:id="prose-book-letter">
+              <catDesc>Prose cited book → letter (epistolary collections arranged in books,
+                e.g. Ambrose, Hieronymus). Citation: book.letter.</catDesc>
+            </category>
+            <category xml:id="prose-book-section">
+              <catDesc>Prose cited book → section, with no chapter division (Aristotle by
+                Bekker, some geography). Citation: book → section.</catDesc>
+            </category>
+            <category xml:id="prose-book-chapter">
+              <catDesc>Prose cited book → chapter, with no section division. Citation:
+                book → chapter.</catDesc>
+            </category>
+            <category xml:id="prose-chapter">
+              <catDesc>Prose cited by a single chapter level (much First1KGreek prose).
+                Citation: chapter.</catDesc>
+            </category>
+            <category xml:id="prose-chapter-verse">
+              <catDesc>Prose cited by chapter and verse (New Testament and biblical-style texts).
+                Citation: chapter.verse.</catDesc>
+            </category>
+            <category xml:id="prose-epistle">
+              <catDesc>Prose cited by epistle or letter number (EpiDoc div[@type='textpart'][@subtype='epistle']
+                or [@subtype='letter']). Citation: epistle.</catDesc>
+            </category>
+            <category xml:id="prose-paragraph">
+              <catDesc>Prose cited by paragraph number (EpiDoc div[@type='textpart'][@subtype='paragraph']).
+                Citation: paragraph.</catDesc>
+            </category>
+            <category xml:id="prose-fragment">
+              <catDesc>Prose cited by fragment number (EpiDoc div[@type='textpart'][@subtype='fragment']).
+                Citation: fragment.</catDesc>
+            </category>
+            <category xml:id="prose-commentary-section">
+              <catDesc>Prose cited commentary → section (scholia, commentarii on classical
+                authors). Citation: commentary → section.</catDesc>
+            </category>
+            <category xml:id="prose-section">
+              <catDesc>Prose cited by a single section level (Platonic Stephanus sections,
+                oratory, letters). Citation: section.</catDesc>
+            </category>
+          </category>
+
+        </taxonomy>
+      </classDecl>
+    </encodingDesc>
   </teiHeader>
   <text>
     <body>
-      <p>This customization defines the Perseus Base Schema, the root of the
-        Perseus ODD family. It chains from
-        <ref target="tei_bare.odd">tei_bare.odd</ref> and further hardens the
-        schema by removing attribute classes that are semantically inapplicable
-        to printed-book encoding and that have historically introduced spurious
-        attribute noise in the Perseus corpus.</p>
+      <head>The Core Perseus Customization</head>
+      <p>This ODD file defines the elements and attributes which may occur in any Perseus document.
+        It is meant to be the base for higher-level schemas.</p>
 
-      <div>
-        <head>Class deletions</head>
 
-        <p>The class <name type="class">att.editLike</name> is deleted in its
-          entirety. This class, defined in the <ident type="module">tei</ident>
-          module, provides the attributes <att>evidence</att> and
-          <att>instant</att>. The attribute <att>instant</att> is intended for
-          marking the temporal status of manuscript revisions; it carries no
-          meaning on elements used to encode printed texts and has been
-          introduced spuriously by legacy conversion scripts onto elements such
-          as <gi>name</gi> and <gi>p</gi>. Removing the class at the base level
-          ensures that no Perseus schema, however specialized, can admit
-          these attributes unless this ODD is explicitly overridden.</p>
+      <schemaSpec ident="perseus_core" start="TEI" docLang="en">
 
-        <p>The class <name type="class">att.personal</name>, which provides
-          <att>full</att> and <att>sort</att>, is likewise a source of
-          spurious metadata in the corpus. However, it is defined in the
-          <ident type="module">namesdates</ident> module, which is not loaded
-          here; ODD validation requires that a deleted class's module be
-          present. The deletion of <name type="class">att.personal</name>
-          must therefore appear in each derivative ODD that activates
-          <ident type="module">namesdates</ident>.</p>
+        <!-- This is the SINGLE SOURCE OF TRUTH for the Perseus element set. The include lists
+             below are the curated subset of each TEI module. perseus_prose/verse/drama chain
+             from the compiled form of this file and re-select these curated subsets with BARE
+             moduleRefs (no include=), so they inherit changes here automatically. To add or
+             remove an element corpus-wide, edit the include list here only.
+             See ODD-CHAINING-PROTOCOL.md. -->
+        <moduleRef key="tei"/>
+        <moduleRef key="core"
+          include="p head note hi foreign cit gloss gap lb pb
+                   title author editor pubPlace publisher date
+                   bibl biblStruct biblScope respStmt resp monogr imprint
+                   ref quote q name milestone list item label
+                   add del choice abbr expan corr sic
+                   num emph lg term rs series listBibl
+                   graphic mentioned
+                   l sp speaker stage"/>
+        <moduleRef key="analysis" include="s w"/>
+        <moduleRef key="linking" include="seg anchor ab"/>
+        <moduleRef key="header"
+          include="teiHeader fileDesc titleStmt publicationStmt sourceDesc
+                   editionStmt extent notesStmt
+                   principal sponsor funder authority availability idno
+                   encodingDesc projectDesc classDecl taxonomy category catDesc
+                   refsDecl cRefPattern refState citeStructure
+                   editorialDecl correction normalization quotation
+                   profileDesc creation langUsage language textClass keywords catRef
+                   licence change revisionDesc"/>
+        <moduleRef key="textstructure"
+          include="TEI text body div front back opener closer salute signed dateline byline
+                   floatingText"/>
+        <moduleRef key="namesdates" include="persName orgName placeName surname forename addName"/>
+        <moduleRef key="verse"/>
+        <!-- The drama module supplies cast-list elements. <stage> is NOT here: in TEI P5 it
+             belongs to the core module (added to the core include list above). -->
+        <moduleRef key="drama" include="castList castGroup castItem role roleDesc set"/>
+        <!-- figures module: <figure> and its caption <figDesc> (embedded <graphic> is a core
+             element, listed in the core include above). Children must declare this module to
+             use figures (see ODD-CHAINING-PROTOCOL.md). -->
+        <moduleRef key="figures" include="figure figDesc"/>
+        <moduleRef key="dictionaries"/>
 
-        <specGrp xml:id="perseus-base-classdeletions">
-          <!-- Remove att.editLike: provides @evidence and @instant.
-               Neither attribute is meaningful for printed-book encoding. -->
-          <classSpec ident="att.editLike" mode="delete" module="tei" type="atts"/>
-        </specGrp>
-      </div>
+        <!-- Constrain @met to a controlled vocabulary of Greek and Latin meters, defined ONCE
+             here on att.metrical (verse module) so every genre that uses metrical elements
+             (verse, drama) inherits it without re-declaring. type="semi" keeps the list open
+             (unlisted values are flagged, not rejected). NOTE: the valList MUST carry
+             mode="add"; under a mode="change" attDef a bare <valList> is silently dropped by
+             odd2odd. See ODD-CHAINING-PROTOCOL.md. The controlled vocabulary is drawn from
+             standard classical scholarship (West, Greek Metre; Raven, Latin Metre). -->
+        <classSpec ident="att.metrical" module="verse" mode="change" type="atts">
+          <attList>
+            <attDef ident="met" mode="change">
+              <valList type="semi" mode="add">
 
-      <div>
-        <head>Formal declaration</head>
-        <p>The schema is declared below. The <att>source</att> attribute
-          chains this ODD to the compiled form of
-          <ref target="tei_bare.compiled.odd">tei_bare</ref>, which provides
-          the base vocabulary of fully-expanded element and class specs.
-          The same <gi>moduleRef</gi> elements as <ident>tei_bare</ident>
-          are repeated here so that <name>odd2odd.xsl</name> knows which
-          specs to select from the compiled parent; the class deletions
-          are then applied on top.</p>
+                <!-- Dactylic / Elegiac -->
+                <valItem ident="dactylic-hexameter"><desc>Standard line of Greek and Latin epic and didactic verse. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="dactylic-pentameter"><desc>Second line of the elegiac couplet. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="elegiac-couplet"><desc>Hexameter + pentameter pair. Use on <gi>lg</gi>.</desc></valItem>
 
-        <schemaSpec ident="perseus_base" xml:lang="en" prefix="tei_" targetLang="en" docLang="en" start="TEI">
-          <!-- Mirror tei_bare's module selections so odd2odd.xsl can
-               look them up in the compiled parent vocabulary. -->
-          <moduleRef key="core" include="p list item label head author title editor pubPlace publisher date bibl biblStruct respStmt resp monogr imprint ref milestone del add note q quote lg l name"/>
-          <moduleRef key="tei"/>
-          <moduleRef key="header" include="teiHeader fileDesc titleStmt publicationStmt sourceDesc editionStmt edition principal refsDecl cRefPattern sponsor biblFull change citeData citeStructure editorialDecl idno language langUsage licence listChange revisionDesc authority availability funder encodingDesc profileDesc refState"/>
-          <moduleRef key="textstructure" include="TEI text body div front back"/>
-          <specGrpRef target="#perseus-base-classdeletions"/>
-        <classRef key="att.metrical"/></schemaSpec>
-      </div>
+                <!-- Iambic -->
+                <valItem ident="iambic-trimeter"><desc>Standard dialogue line in Greek drama; equivalent to Latin iambic senarius. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="iambic-septenarius"><desc>Common in Roman comedy (Plautus, Terence). Use on <gi>l</gi>.</desc></valItem>
+
+                <!-- Trochaic -->
+                <valItem ident="trochaic-tetrameter"><desc>Trochaic tetrameter catalectic; Greek drama and Latin comedy. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="trochaic-septenarius"><desc>Common in Roman comedy. Use on <gi>l</gi>.</desc></valItem>
+
+                <!-- Anapestic -->
+                <valItem ident="anapestic-dimeter"><desc>Greek drama marching songs and lyric passages. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="anapestic-tetrameter"><desc>Anapestic tetrameter catalectic. Use on <gi>l</gi>.</desc></valItem>
+
+                <!-- Sapphic -->
+                <valItem ident="sapphic-strophe"><desc>Three sapphic lines + adonic. Use on <gi>lg</gi>.</desc></valItem>
+                <valItem ident="sapphic-hendecasyllable"><desc>Lines 1–3 of the sapphic strophe. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="adonic"><desc>— ∪ ∪ — ×; closing line of the sapphic strophe. Use on <gi>l</gi>.</desc></valItem>
+
+                <!-- Alcaic -->
+                <valItem ident="alcaic-strophe"><desc>Four-line Alcaic stanza (Horace). Use on <gi>lg</gi>.</desc></valItem>
+                <valItem ident="alcaic-decasyllable"><desc>Lines 1–2 of the alcaic strophe. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="alcaic-enneasyllable"><desc>Line 3 of the alcaic strophe. Use on <gi>l</gi>.</desc></valItem>
+
+                <!-- Asclepiadean / Hendecasyllabic -->
+                <valItem ident="phalaecian-hendecasyllable"><desc>Phalaecian hendecasyllable (Catullus, Martial). Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="lesser-asclepiadean"><desc>Lesser asclepiadean. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="greater-asclepiadean"><desc>Greater asclepiadean. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="glyconic"><desc>Glyconic. Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="pherecratean"><desc>Pherecratean; closing line of several Horatian systems. Use on <gi>l</gi>.</desc></valItem>
+
+                <!-- Other lyric / dramatic -->
+                <valItem ident="anacreontic"><desc>Ionic dimeter (anacreontic). Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="choliamb"><desc>Scazon; iambic trimeter with final spondee (Catullus, Babrius). Use on <gi>l</gi>.</desc></valItem>
+                <valItem ident="dochmiac"><desc>Dochmiac; tragic lyric for agitation or grief. Use on <gi>l</gi>.</desc></valItem>
+
+              </valList>
+            </attDef>
+          </attList>
+        </classSpec>
+
+        <!-- Perseus does not transcribe spoken language, recordings, or computer-mediate
+             communication -->
+        <classSpec module="tei" ident="att.cmc" type="atts" mode="delete"/>
+        <classSpec module="tei" ident="model.cmc" type="model" mode="delete"/>
+        <classSpec module="tei" ident="att.duration" type="atts" mode="delete"/>
+        <classSpec module="tei" ident="att.duration.w3c" type="atts" mode="delete"/>
+        
+        <!-- Perseus does not describe manuscripts -->
+        <classSpec module="tei" ident="att.written" type="atts" mode="delete"/>
+        <classSpec module="tei" ident="att.handFeatures" type="atts" mode="delete"/>
+        
+        <!-- Perseus does not describe the Internet -->
+        <classSpec module="tei" ident="att.internetMedia" type="atts" mode="delete"/>
+        
+
+      </schemaSpec>
+
     </body>
   </text>
 </TEI>
