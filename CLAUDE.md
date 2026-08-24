@@ -1,0 +1,13 @@
+# What is the project?
+
+See \@proposal.org
+
+You willl help me author TEI customizations using the ODD format, as
+specified here:
+<https://tei-c.org/guidelines/customization/getting-started-with-p5-odds/>.
+We will use the strategy of starting with the bare ODD files
+\@tei~bare~.odd and creating perseus~base~.odd that is hardened to
+remove global attribute classes like att.editLike and att.personal that
+are not needed for encoding printed books. Then we will use the \"ODD
+chaining\" technique to create ODDs for Early Modern English Books,
+Classical Greek and Latin, and reference works.

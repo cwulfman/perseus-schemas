@@ -1,7 +1,5 @@
-# AI files
-CLAUDE.md
 .claude
 
-# Build intermediates — regenerate with: make
-*.compiled.odd
-out/
+# Build intermediates — regenerate with: make tei_bare.compiled.odd
+tei_bare.compiled.odd
+tei_bare.rng
