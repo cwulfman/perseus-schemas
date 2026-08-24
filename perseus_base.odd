@@ -155,7 +155,7 @@
                    ref quote q name milestone list item label
                    add del choice abbr expan corr sic
                    num emph lg term rs series listBibl
-                   graphic
+                   graphic mentioned
                    l sp speaker stage"/>
         <moduleRef key="analysis" include="s w"/>
         <moduleRef key="linking" include="seg anchor ab"/>

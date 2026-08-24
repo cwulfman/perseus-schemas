@@ -9,7 +9,7 @@ namespace teix = "http://www.tei-c.org/ns/Examples"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2026-08-08T16:46:11Z. . 
+# Schema generated from ODD source 2026-08-24T20:20:12Z. . 
 # TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 # TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
 #
@@ -1095,14 +1095,16 @@ model.hiLike_sequence = hi, q
 model.hiLike_sequenceOptional = hi?, q?
 model.hiLike_sequenceOptionalRepeatable = hi*, q*
 model.hiLike_sequenceRepeatable = hi+, q+
-model.emphLike = foreign | emph | gloss | term | title
-model.emphLike_alternation = foreign | emph | gloss | term | title
-model.emphLike_sequence = foreign, emph, gloss, term, title
-model.emphLike_sequenceOptional = foreign?, emph?, gloss?, term?, title?
+model.emphLike = foreign | emph | mentioned | gloss | term | title
+model.emphLike_alternation =
+  foreign | emph | mentioned | gloss | term | title
+model.emphLike_sequence = foreign, emph, mentioned, gloss, term, title
+model.emphLike_sequenceOptional =
+  foreign?, emph?, mentioned?, gloss?, term?, title?
 model.emphLike_sequenceOptionalRepeatable =
-  foreign*, emph*, gloss*, term*, title*
+  foreign*, emph*, mentioned*, gloss*, term*, title*
 model.emphLike_sequenceRepeatable =
-  foreign+, emph+, gloss+, term+, title+
+  foreign+, emph+, mentioned+, gloss+, term+, title+
 model.highlighted = model.hiLike | model.emphLike
 model.highlighted_alternation =
   model.hiLike_alternation | model.emphLike_alternation
@@ -1780,6 +1782,10 @@ cit =
     att.typed.attributes,
     empty
   }
+mentioned =
+  
+  ## marks words or phrases mentioned, not used. [3.3.3. Quotation]
+  element mentioned { macro.phraseSeq, att.global.attributes, empty }
 gloss =
   
   ## (gloss) identifies a phrase or word used to provide a gloss or definition for some other word or phrase. [3.4.1. Terms and Glosses 23.4.1. Description of Components]

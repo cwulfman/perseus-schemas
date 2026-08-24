@@ -9,7 +9,7 @@ namespace teix = "http://www.tei-c.org/ns/Examples"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2026-08-08T16:46:22Z. . 
+# Schema generated from ODD source 2026-08-24T20:20:22Z. . 
 # TEI Edition:  
 # TEI Edition Location: https://www.tei-c.org/Vault/P5// 
 #
@@ -1056,12 +1056,13 @@ model.hiLike_sequence = hi
 model.hiLike_sequenceOptional = hi?
 model.hiLike_sequenceOptionalRepeatable = hi*
 model.hiLike_sequenceRepeatable = hi+
-model.emphLike = foreign | gloss | title
-model.emphLike_alternation = foreign | gloss | title
-model.emphLike_sequence = foreign, gloss, title
-model.emphLike_sequenceOptional = foreign?, gloss?, title?
-model.emphLike_sequenceOptionalRepeatable = foreign*, gloss*, title*
-model.emphLike_sequenceRepeatable = foreign+, gloss+, title+
+model.emphLike = foreign | mentioned | gloss | title
+model.emphLike_alternation = foreign | mentioned | gloss | title
+model.emphLike_sequence = foreign, mentioned, gloss, title
+model.emphLike_sequenceOptional = foreign?, mentioned?, gloss?, title?
+model.emphLike_sequenceOptionalRepeatable =
+  foreign*, mentioned*, gloss*, title*
+model.emphLike_sequenceRepeatable = foreign+, mentioned+, gloss+, title+
 model.highlighted = model.hiLike | model.emphLike
 model.highlighted_alternation =
   model.hiLike_alternation | model.emphLike_alternation
@@ -1669,6 +1670,10 @@ cit =
     att.typed.attributes,
     empty
   }
+mentioned =
+  
+  ## marks words or phrases mentioned, not used. [3.3.3. Quotation]
+  element mentioned { macro.phraseSeq, att.global.attributes, empty }
 gloss =
   
   ## (gloss) identifies a phrase or word used to provide a gloss or definition for some other word or phrase. [3.4.1. Terms and Glosses 23.4.1. Description of Components]
